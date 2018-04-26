@@ -12,8 +12,8 @@ Calendar -> New Event -> Set URL field to
 
 	http://localhost/">"><script>alert(/horde groupware 5.2.22 xss/)</script>
 	
-[image](https://raw.githubusercontent.com/starnightcyber/Miscellaneous/master/Horde/1.png)
+![image](https://raw.githubusercontent.com/starnightcyber/Miscellaneous/master/Horde/1.png)
 
 Click the event we just created, XSS triggered.
 
-[image](https://raw.githubusercontent.com/starnightcyber/Miscellaneous/master/Horde/2.png)
+![image](https://raw.githubusercontent.com/starnightcyber/Miscellaneous/master/Horde/2.png)
