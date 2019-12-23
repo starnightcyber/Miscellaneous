@@ -27,3 +27,4 @@ update:2019.10.21
 
 https://github.com/starnightcyber/Miscellaneous/releases/tag/AWVS12
 
+[AWVS12破解版的安装使用](https://www.cnblogs.com/Hi-blog/p/AWVS12.html)
