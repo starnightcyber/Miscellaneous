@@ -1,6 +1,12 @@
 # Miscellaneous
 Miscellaneous things
 
+### Seay源代码审计系统2.1
+update:2019.12.23
+
+https://github.com/starnightcyber/Miscellaneous/releases/tag/seay2.1
+
+From: https://github.com/f1tz/cnseay
 
 ### AWVS 10.5破解版
 update:2019.12.19
@@ -9,6 +15,7 @@ https://github.com/starnightcyber/Miscellaneous/releases/tag/awvs10.5
 
 原下载地址：https://www.52pojie.cn/thread-377625-1-1.html
 
+[AWVS 10.5使用指南](https://www.cnblogs.com/Hi-blog/p/AWVS-User-Guide.html)
 
 ### Wireshark-win32-2.9.0-gm.3.exe
 update:2019.12.9
