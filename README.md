@@ -1,6 +1,13 @@
 # Miscellaneous
 Miscellaneous things
 
+### Cobalt Strike 3.13 破解版
+update:2020.1.9
+
+https://github.com/starnightcyber/Miscellaneous/releases/tag/Cobalt-Strike-3.13
+
+From:https://download.csdn.net/download/ws13129/11100785
+
 ### Seay源代码审计系统2.1
 update:2019.12.23
 
