@@ -1,6 +1,14 @@
 # Miscellaneous
 Miscellaneous things
 
+### cobaltstrike4.0 原版&破解版
+
+https://github.com/starnightcyber/Miscellaneous/releases/tag/cobaltstrike4.0
+
+From:https://www.cnblogs.com/ssooking/p/12535998.html?from=timeline
+
+资料：[破解的cs4.0、cs4.0官方手册翻译和一些笔记](https://github.com/Snowming04/CobaltStrike4.0_related)
+
 ### Cobalt Strike 3.13 破解版
 update:2020.1.9
 
