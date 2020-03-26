@@ -1,6 +1,15 @@
 # Miscellaneous
 Miscellaneous things
 
+## [tools](https://github.com/starnightcyber/Miscellaneous/tree/master/tools)
+
+| 名称 | 用途 |
+| - | - |
+| iftop & nload | [Linux流量监控工具iftop & nload](https://www.cnblogs.com/Hi-blog/p/linux-network-flow-iftop-and-nload.html) |
+| htop | [Linux查看CPU和内存情况](https://www.cnblogs.com/Hi-blog/p/How-To-Check-CPU-And-Memory-On-CentOS7-Linux-System.html#autoid-0-3-1) |
+
+## 搬砖工
+
 ### cobaltstrike4.0 原版&破解版
 
 https://github.com/starnightcyber/Miscellaneous/releases/tag/cobaltstrike4.0
