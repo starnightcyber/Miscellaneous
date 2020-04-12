@@ -10,7 +10,25 @@ Miscellaneous things
 
 ## 搬砖工
 
+### Awvs13破解版 
+
+Awvs13破解版 Acunetix Web Vulnerability Scanner 13 cracked
+
+update:2020.4.12
+
+From:https://www.ddosi.com/b238/
+
+下载[链接](https://le6-my.sharepoint.com/personal/s1cniixn7_sysu_edu_pl/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2Fs1cniixn7%5Fsysu%5Fedu%5Fpl%2FDocuments%2Fawvs13%E7%A0%B4%E8%A7%A3%E7%89%88%2FAcunetix%5F13%E7%A0%B4%E8%A7%A3%E7%89%88%5Fwindows%2Erar),解压密码: www.ddosi.com
+
+破解方式：
+```
+① wvsc.exe覆盖到“C:\Program Files (x86)\Acunetix\13.0.200205121\
+② license_info.json覆盖到“C:\ProgramData\Acunetix\shared\license”
+```
+
 ### cobaltstrike4.0 原版&破解版
+
+update:2020.3.24
 
 https://github.com/starnightcyber/Miscellaneous/releases/tag/cobaltstrike4.0
 
