@@ -111,6 +111,7 @@ print_info "系统中存在的账号如下:"
 
 account=`/bin/cat /etc/shadow | /usr/bin/sed '/^\s*#/d' | /bin/awk -F: '($2!~/^*/) && ($2!~/^!!/) {print $1}'`
 print_info "[ $account ]"
+echo "$account" >> "$file"
 
 manual=$(($manual+1))
 print_manual_check
