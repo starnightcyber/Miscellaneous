@@ -214,43 +214,76 @@ check_point="口令策略-4:检查设备密码复杂度策略"
 index=$(($index+1))
 print_check_point $index "$check_point"
 
-print_info "'密码长度>=8，且至少包含一个大写字母、小写字母、数字、特殊字符'"
+print_info "'系统应设置密码复杂度策略，避免设置账号弱口令'"
 print_dot_line
-print_info "系统目前的密码复杂度策略，如下:"
-info=`cat /etc/pam.d/system-auth | grep password | grep requisite`
-print_info "$info"
+print_info "此部分要求可能不一致，请手工检查/etc/pam.d/system-auth或/etc/security/pwquality.conf文件配置"
 
-line=`cat /etc/pam.d/system-auth | grep password | grep pam_cracklib.so | grep -v ^#`
-if [ -n "$line" ]; then
-  check_min=`echo $line | grep minlen`
-  check_dcredit=`echo $line | grep dcredit`
-  check_ucredit=`echo $line | grep ucredit`
-  check_ocredit=`echo $line | grep ocredit`
-  check_lcredit=`echo $line | grep lcredit`
-
-  if [ -n "$check_min"  ] && [ -n "$check_dcredit"  ] && [ -n "$check_ucredit"  ] && [ -n "$check_ocredit"  ] && [ -n "$check_lcredit"  ]; then
-    minlen=`echo $line | awk -F 'minlen=' '{print $2}' | awk -F ' ' '{print $1}'`
-    dcredit=`echo $line | awk -F 'dcredit=' '{print $2}' | awk -F ' ' '{print $1}'`
-    ucredit=`echo $line | awk -F 'ucredit=' '{print $2}' | awk -F ' ' '{print $1}'`
-    ocredit=`echo $line | awk -F 'ocredit=' '{print $2}' | awk -F ' ' '{print $1}'`
-    lcredit=`echo $line | awk -F 'lcredit=' '{print $2}' | awk -F ' ' '{print $1}'`
-
-    if [ "$minlen" -ge 8 ] && [ ${dcredit#-} -ge 1 ] && [ ${ucredit#-} -ge 1 ] && [ ${ucredit#-} -ge 1 ] && \
-     [ ${ocredit#-} -ge 1 ] && [ ${lcredit#-} -ge 1 ]; then
-      pass=$(($pass+1))
-      print_pass
-    else
-      fail=$(($fail+1))
-      print_fail
-    fi
-  else
-    fail=$(($fail+1))
-    print_fail
-  fi
-else
-  fail=$(($fail+1))
-  print_fail
-fi
+# 以下内容是以密码长度至少为8位，并且存在大写字母、小写字母、数字、特殊字符至少一个要求来检测的
+# ------------------------------------------------------------------------------
+# print_info "'密码长度>=8，且至少包含一个大写字母、小写字母、数字、特殊字符(可自定义密码复杂度策略)'"
+# print_info "可在/etc/pam.d/system-auth或/etc/security/pwquality.conf进行配置"
+# print_dot_line
+# print_info "检查/etc/pam.d/system-auth，如下:"
+#
+# flag=0
+#
+# # 以下检查/etc/pam.d/system-auth文件中的内容
+# #
+# info=`cat /etc/pam.d/system-auth | grep password | grep requisite`
+# print_info "$info"
+# line=`cat /etc/pam.d/system-auth | grep password | grep pam_cracklib.so | grep -v ^#`
+# if [ -n "$line" ]; then
+#   check_min=`echo $line | grep minlen`
+#   check_dcredit=`echo $line | grep dcredit`
+#   check_ucredit=`echo $line | grep ucredit`
+#   check_ocredit=`echo $line | grep ocredit`
+#   check_lcredit=`echo $line | grep lcredit`
+#   # minlen:密码字符串长度，dcredit数字字符个数，ucredit大写字符个数，ocredit特殊字符个数，lcredit小写字符个数
+#   if [ -n "$check_min"  ] && [ -n "$check_dcredit"  ] && [ -n "$check_ucredit"  ] && [ -n "$check_ocredit"  ] && [ -n "$check_lcredit"  ]; then
+#     minlen=`echo $line | awk -F 'minlen=' '{print $2}' | awk -F ' ' '{print $1}'`
+#     dcredit=`echo $line | awk -F 'dcredit=' '{print $2}' | awk -F ' ' '{print $1}'`
+#     ucredit=`echo $line | awk -F 'ucredit=' '{print $2}' | awk -F ' ' '{print $1}'`
+#     ocredit=`echo $line | awk -F 'ocredit=' '{print $2}' | awk -F ' ' '{print $1}'`
+#     lcredit=`echo $line | awk -F 'lcredit=' '{print $2}' | awk -F ' ' '{print $1}'`
+#
+#     if [ "$minlen" -ge 8 ] && [ ${dcredit#-} -ge 1 ] && [ ${ucredit#-} -ge 1 ] && [ ${ucredit#-} -ge 1 ] && \
+#      [ ${ocredit#-} -ge 1 ] && [ ${lcredit#-} -ge 1 ]; then
+#        print_info "minlen => ""[ $minlen ]"
+#        print_info "dcredit => ""[ $dcredit ]"
+#        print_info "ucredit => ""[ $ucredit ]"
+#        print_info "ocredit => ""[ $ocredit ]"
+#        print_info "lcredit => ""[ $lcredit ]"
+#       flag=1
+#     fi
+#   fi
+# fi
+#
+# # 以下检查/etc/security/pwquality.conf文件中的内容
+# # minlen为密码字符串长度，minclass为字符类别
+# print_info "检查/etc/security/pwquality.conf，如下:"
+# line_minlen=`cat /etc/security/pwquality.conf | grep minlen | grep -v ^#`
+# line_minclass=`cat /etc/security/pwquality.conf | grep minclass | grep -v ^#`
+#
+# if [ -n "$line_minlen" ] && [ -n "$line_minclass" ]; then
+#   minlen=`echo "$line_minlen" | awk -F "=" '{print $2}' | awk '{gsub(/^\s+|\s+$/, "");print}'`
+#   minclass=`echo "$line_minclass" | awk -F "=" '{print $2}' | awk '{gsub(/^\s+|\s+$/, "");print}'`
+#   if [ "$minlen" -ge 8 ] && [ "$minclass" -ge 4 ];then
+#     print_info "minlen =>"" [ $minlen ]"
+#     print_info "minclass =>"" [ $minclass ]"
+#     flag=1
+#   fi
+# fi
+#
+# if [ "$flag" -eq 1 ]; then
+#   pass=$(($pass+1))
+#   print_pass
+# else
+#   fail=$(($fail+1))
+#   print_fail
+# fi
+# ------------------------------------------------------------------------------
+manual=$(($manual+1))
+print_manual_check
 
 
 check_point="口令策略-5:检查是否存在空口令账号"
@@ -306,7 +339,6 @@ print_info "登录失败限制可以使用pam_tally或pam.d，请手工检测/et
 manual=$(($manual+1))
 print_manual_check
 
-
 check_point="认证授权-1:检查用户目录缺省访问权限设置 "
 index=$(($index+1))
 print_check_point $index "$check_point"
@@ -340,14 +372,14 @@ print_info "$banner1"
 # 如果banner为空或者为 None，则符合要求
 if [ -z "$banner1" ]; then
   print_info "不存在Banner配置项"
-  fail=$(($fail+1))
-  print_fail
+  pass=$(($pass+1))
+  print_pass
 else
   banner2=`cat /etc/ssh/sshd_config | grep Banner | awk '{print $2}' | grep -v "none"`
   if [ -z "$banner2" ]; then
     print_info "未配置Banner路径文件"
-    fail=$(($fail+1))
-    print_fail
+    pass=$(($pass+1))
+    print_pass
   else
     manual=$(($manual+1))
     path=`cat /etc/ssh/sshd_config | grep Banner | awk '{print $2}'`
@@ -821,8 +853,8 @@ else
     print_manual_check
   else
     print_info "/etc/motd文件中内容为空，不提示登录信息"
-    fail=$(($fail+1))
-    print_fail
+    pass=$(($pass+1))
+    print_pass
   fi
 fi
 
@@ -861,7 +893,7 @@ print_check_point $index "$check_point"
 print_info "'对于不做路由功能的系统，应该关闭数据包转发功能'"
 print_dot_line
 ip_forward=`sysctl -n net.ipv4.ip_forward`
-print_info '实际值 ==> ip_forward:'$ip_forward
+print_info "实际值 ==> ip_forward:"" [ $ip_forward ] "
 
 if [ 0 -eq "$ip_forward" ]; then
   pass=$(($pass+1))
@@ -972,10 +1004,10 @@ lock_enabled=`gconftool-2 -g /apps/gnome-screensaver/lock_enabled`
 mode=`gconftool-2 -g /apps/gnome-screensaver/mode`
 idle_delay=`gconftool-2 -g /apps/gnome-screensaver/idle_delay`
 
-print_info "idle_activation_enabled ==> ""$idle_activation_enabled"
-print_info "lock_enabled ==> ""$lock_enabled"
-print_info "mode ==> ""$mode"
-print_info "idle_delay ==> ""$idle_delay"
+print_info "idle_activation_enabled ==> "" [ $idle_activation_enabled ]"
+print_info "lock_enabled ==> "" [ $lock_enabled ]"
+print_info "mode ==> "" [ $mode ]"
+print_info "idle_delay ==> "" [ $idle_delay ]"
 
 if  [ "$idle_activation_enabled" == "true" ] && [ "$lock_enabled" == "true" ] \
   && [ "$mode" == "blank-only" ] && [ "$idle_delay" -le 15 ]; then
@@ -1015,6 +1047,7 @@ print_dot_line
 os=`uname -a`
 print_info "==> please manual check os version ..."
 print_info "$os"
+
 manual=$(($manual+1))
 print_manual_check
 
@@ -1063,7 +1096,7 @@ print_info "'调整内核安全参数，增强系统安全性，tcp_syncookies�
 print_dot_line
 
 tcp_syncookies=`cat /proc/sys/net/ipv4/tcp_syncookies`
-print_info "tcp_syncookies ==> ""$tcp_syncookies"
+print_info "tcp_syncookies ==> "" [ $tcp_syncookies ]"
 
 if [ "$tcp_syncookies" -eq 1 ]; then
   pass=$(($pass+1))
@@ -1087,11 +1120,11 @@ IgnoreRhosts=`cat /etc/ssh/sshd_config  | grep IgnoreRhosts  | egrep -v ^\# | aw
 HostbasedAuthentication=`cat /etc/ssh/sshd_config  | grep HostbasedAuthentication | egrep -v ^\# | awk '{print $2}'`
 PermitEmptyPasswords=`cat /etc/ssh/sshd_config  | grep PermitEmptyPasswords | egrep -v ^\# | awk '{print $2}'`
 
-print_info "X11Forwarding => ""$X11Forwarding"
-print_info "MaxAuthTries => ""$MaxAuthTries"
-print_info "IgnoreRhosts => ""$IgnoreRhosts"
-print_info "HostbasedAuthentication => ""$HostbasedAuthentication"
-print_info "PermitEmptyPasswords => ""$PermitEmptyPasswords"
+print_info "X11Forwarding => "" [ $X11Forwarding ]"
+print_info "MaxAuthTries => "" [ $MaxAuthTries ]"
+print_info "IgnoreRhosts => "" [ $IgnoreRhosts ]"
+print_info "HostbasedAuthentication => "" [ $HostbasedAuthentication ]"
+print_info "PermitEmptyPasswords => "" [ $PermitEmptyPasswords ]"
 
 if [ "$X11Forwarding" = "no" ] && [ "$MaxAuthTries" -le 4 ] && [ "$IgnoreRhosts" = "yes" ] && \
   [ "$HostbasedAuthentication" = "no" ] && [ "$PermitEmptyPasswords" = "no" ]; then
