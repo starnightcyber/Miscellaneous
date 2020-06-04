@@ -1015,7 +1015,6 @@ print_dot_line
 os=`uname -a`
 print_info "==> please manual check os version ..."
 print_info "$os"
-echo "$os" >> "$file"
 manual=$(($manual+1))
 print_manual_check
 
