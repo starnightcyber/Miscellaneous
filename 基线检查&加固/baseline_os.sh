@@ -1,28 +1,28 @@
 #!/bin/bash
 # ================ Global function for print result ===================
-# 绿色字体输出
 dash_line="------------------------------------------------------------------"
+# 绿色字体输出检测通过
 pass=$(($pass+1))
 print_pass(){
     echo -e "\033[32m++> PASS \033[0m"
     echo "++> PASS" >> "$file"
 }
-# 红色字体输出
+# 红色字体输出检测失败FAIL
 fail=$(($fail+1))
 print_fail(){
   echo -e "\033[31m--> FAIL \033[0m"
   echo "--> FAIL" >> "$file"
 }
-# 黄色字体输出
+# 黄色字体输出需手工再检查的项
 print_manual_check(){
   echo -e "\033[33m##> Manual \033[0m"
   echo "##> Manual" >> "$file"
 }
-# 蓝色字体输出
+# 蓝色字体输出补充
 print_info(){
   echo -e "\033[34m$1 \033[0m"
 }
-# 紫色字体输出
+# 紫色字体输出检测项
 print_check_point(){
   echo ""
   echo -e "\033[35m[No."$1"] "$2" \033[0m"
@@ -111,7 +111,6 @@ print_info "系统中存在的账号如下:"
 
 account=`/bin/cat /etc/shadow | /usr/bin/sed '/^\s*#/d' | /bin/awk -F: '($2!~/^*/) && ($2!~/^!!/) {print $1}'`
 print_info "[ $account ]"
-echo "$account" >> "$file"
 
 manual=$(($manual+1))
 print_manual_check
@@ -487,7 +486,7 @@ print_info $secure' /var/log/secure  '
 print_info $wtmp' /var/log/wtmp  '
 print_info $cron' /var/log/cron  '
 
-if [ "$messages" -le 600 ] && [ "$secure" -le 600 ] && [ "$maillog" -le 600 ] && [ "$cron" -le 600 ] && [ "$dmesg" -le 644 ] && [ "$wtmp" -le 644 ]; then
+if [ "$messages" -le 600 ] && [ "$secure" -le 600 ] && [ "$maillog" -le 600 ] && [ "$cron" -le 600 ] && [ "$dmesg" -le 644 ] && [ "$wtmp" -le 664 ]; then
   pass=$(($pass+1))
   print_pass
 else
