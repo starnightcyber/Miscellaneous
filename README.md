@@ -30,6 +30,16 @@ Miscellaneous things
 ## 搬砖工
 
 <details>
+  <summary>2020.12.16 ~ SimpleEmailSpoofer </summary>
+  
+  [SimpleEmailSpoofer](https://github.com/lunarca/SimpleEmailSpoofer) 邮件伪造工具https://github.com/lunarca/SimpleEmailSpoofer </br>
+  使用方法：</br>
+  pip install -r requirements.txt  </br>
+  ./SimpleEmailSpoofer.py -e [Path to Email file] -t [To address] -f [From address] -n [From name] -j [Email subject] </br>
+    
+</details>
+
+<details>
   <summary>2020.12.8 ~ CIS Benchmarks </summary>
   CIS Benchmarks基线文档定义了操作系统、服务器软件、云供应商、移动设备、网络设备、桌面软件等的基础要求.
   
