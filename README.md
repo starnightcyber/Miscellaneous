@@ -30,6 +30,25 @@ Miscellaneous things
 ## 搬砖工
 
 <details>
+  <summary>2021.08.13 ~ 密码字典 </summary>
+  
+```  
+  
+  https://github.com/starnightcyber/general_dict
+
+  https://github.com/insightglacier/Dictionary-Of-Pentesting
+
+  https://github.com/Stardustsky/SaiDict
+
+  https://github.com/rootphantomer/Blasting_dictionary
+
+  https://github.com/huyuanzhi2/password_brute_dictionary
+  
+```  
+    
+</details>
+
+<details>
   <summary>2020.12.16 ~ SimpleEmailSpoofer </summary>
   
   [SimpleEmailSpoofer](https://github.com/lunarca/SimpleEmailSpoofer) 邮件伪造工具https://github.com/lunarca/SimpleEmailSpoofer </br>
