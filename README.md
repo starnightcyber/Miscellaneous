@@ -29,6 +29,18 @@ Miscellaneous things
 
 ## 搬砖工
 
+
+<details>
+  <summary>2022.02.12 ~ Nessus API  </summary>
+  
+  封装 Nessus REST API 操作，便于集成到自身的扫描调度系统中。
+  
+```  
+https://github.com/starnightcyber/nessus_api
+```  
+    
+</details>
+
 <details>
   <summary>2021.08.13 ~ 密码字典 </summary>
   
