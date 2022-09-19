@@ -29,6 +29,16 @@ Miscellaneous things
 
 ## 搬砖工
 
+<details>
+  <summary>2022.09.19 ~ Nessus 新版破解方法  </summary>
+  
+  nessus crack for docker
+  
+```  
+https://github.com/elliot-bia/nessus
+```  
+    
+</details>
 
 <details>
   <summary>2022.02.12 ~ Nessus API  </summary>
